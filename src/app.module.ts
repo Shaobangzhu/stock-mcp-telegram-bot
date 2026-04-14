@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -13,8 +14,10 @@ import { AppService } from './app.service';
           .valid('development', 'test', 'production')
           .required(),
         PORT: Joi.number().port().required(),
+        DATABASE_URL: Joi.string().uri().required(),
       }),
     }),
+    PrismaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
