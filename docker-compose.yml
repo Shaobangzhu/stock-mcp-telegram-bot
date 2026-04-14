@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: stock-mcp-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: stock_agent
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - stock_mcp_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  stock_mcp_postgres_data:
