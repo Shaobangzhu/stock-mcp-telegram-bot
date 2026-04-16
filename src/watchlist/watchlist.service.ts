@@ -22,4 +22,12 @@ export class WatchlistService {
       },
     });
   }
+
+  removeBySymbol(symbol: string) {
+    return this.prisma.watchlistItem.delete({
+      where: {
+        symbol: symbol.toUpperCase(),
+      },
+    });
+  }
 }
