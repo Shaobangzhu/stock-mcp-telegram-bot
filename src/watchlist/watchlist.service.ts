@@ -11,7 +11,15 @@ export class WatchlistService {
       data: {
         symbol: createWatchlistItemDto.symbol.toUpperCase(),
         companyName: createWatchlistItemDto.companyName,
-      }
+      },
+    });
+  }
+
+  findAll() {
+    return this.prisma.watchlistItem.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
   }
 }

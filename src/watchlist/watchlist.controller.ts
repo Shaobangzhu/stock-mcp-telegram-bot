@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateWatchlistItemDto } from './dto/create-watchlist-item.dto';
 import { WatchlistService } from './watchlist.service';
 
@@ -9,5 +9,10 @@ export class WatchlistController {
   @Post()
   create(@Body() createWatchlistItemDto: CreateWatchlistItemDto) {
     return this.watchlistService.create(createWatchlistItemDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.watchlistService.findAll();
   }
 }
