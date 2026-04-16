@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateWatchlistItemDto } from './dto/create-watchlist-item.dto';
 
@@ -23,10 +23,24 @@ export class WatchlistService {
     });
   }
 
-  removeBySymbol(symbol: string) {
+  async removeBySymbol(symbol: string) {
+    const normalizedSymbol = symbol.toUpperCase();
+
+    const existingItem = await this.prisma.watchlistItem.findUnique({
+      where: {
+        symbol: normalizedSymbol,
+      },
+    });
+
+    if (!existingItem) {
+      throw new NotFoundException(
+        `Watchlist item with symbol ${symbol} not found`,
+      );
+    }
+
     return this.prisma.watchlistItem.delete({
       where: {
-        symbol: symbol.toUpperCase(),
+        symbol: normalizedSymbol,
       },
     });
   }
