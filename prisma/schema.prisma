@@ -16,3 +16,12 @@ model SystemHealthCheck {
   name      String
   createdAt DateTime @default(now())
 }
+
+model WatchlistItem {
+  id          Int      @id @default(autoincrement())
+  symbol      String   @unique
+  companyName String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

@@ -1,0 +1,23 @@
+import { Body, Controller, Get, Post, Delete, Param } from '@nestjs/common';
+import { CreateWatchlistItemDto } from './dto/create-watchlist-item.dto';
+import { WatchlistService } from './watchlist.service';
+
+@Controller('watchlist')
+export class WatchlistController {
+  constructor(private readonly watchlistService: WatchlistService) {}
+
+  @Post()
+  create(@Body() createWatchlistItemDto: CreateWatchlistItemDto) {
+    return this.watchlistService.create(createWatchlistItemDto);
+  }
+
+  @Get()
+  findAll() {
+    return this.watchlistService.findAll();
+  }
+
+  @Delete(':symbol')
+  remove(@Param('symbol') symbol: string) {
+    return this.watchlistService.removeBySymbol(symbol);
+  }
+}
