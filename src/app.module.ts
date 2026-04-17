@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { HealthModule } from './health/health.module';
 import { WatchlistModule } from './watchlist/watchlist.module';
+import { MarketDataModule } from './market-data/market-data.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { WatchlistModule } from './watchlist/watchlist.module';
     PrismaModule,
     HealthModule,
     WatchlistModule,
+    MarketDataModule,
   ],
   controllers: [AppController],
   providers: [AppService],
