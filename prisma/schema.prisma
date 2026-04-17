@@ -25,3 +25,16 @@ model WatchlistItem {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+model QuoteSnapshot {
+  id            Int      @id @default(autoincrement())
+  symbol        String
+  price         Decimal  @db.Decimal(10, 2)
+  previousClose Decimal  @db.Decimal(10, 2)
+  changePercent Decimal  @db.Decimal(8, 4)
+  dayHigh       Decimal  @db.Decimal(10, 2)
+  dayLow        Decimal  @db.Decimal(10, 2)
+  volume        BigInt
+  capturedAt    DateTime
+  createdAt     DateTime @default(now())
+}
