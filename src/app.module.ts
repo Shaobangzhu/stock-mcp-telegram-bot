@@ -18,6 +18,7 @@ import { MarketDataModule } from './market-data/market-data.module';
           .required(),
         PORT: Joi.number().port().required(),
         DATABASE_URL: Joi.string().uri().required(),
+        ALPHA_VANTAGE_API_KEY: Joi.string().required(),
       }),
     }),
     PrismaModule,

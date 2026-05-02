@@ -138,18 +138,17 @@ MVP 的核心目标是：
 
 MVP 阶段优先选择简单、便宜、容易启动的方案：
 
-- Yahoo Finance 兼容方案 / 开源 npm 包
+- Alpha Vantage API（realtime US market data）
 
 选择原因：
 
-- 启动快
-- 免费
-- 足够支撑 MVP
+- 官方 API，适合付费订阅和长期维护
+- 支持 `GLOBAL_QUOTE` 的 `entitlement=realtime`
+- 后续可升级到 `REALTIME_BULK_QUOTES` 批量抓取
 
-后续可以切换到更稳定的 provider：
+后续可以按成本和数据需求切换或补充 provider：
 
 - Finnhub
-- Alpha Vantage
 - Polygon
 - Twelve Data
 
@@ -425,7 +424,7 @@ src/
       market-data.module.ts
       market-data.service.ts
       providers/
-        yahoo.provider.ts
+        alpha-vantage.provider.ts
       interfaces/
 
     quotes/
@@ -567,7 +566,7 @@ Time: 2026-04-06 10:35 ET
 
 - 新闻链接
 - TradingView 链接
-- Yahoo Finance 链接
+- Alpha Vantage quote 链接
 - AI summary
 
 ## 13. Docker Blueprint
@@ -638,7 +637,7 @@ VOLUME_SPIKE_THRESHOLD=5000000
 
 目标：
 
-- 接一个美股行情 provider
+- 接一个 Alpha Vantage realtime US market data provider
 - 完成单只 / 多只股票抓取
 - 保存 quote snapshot
 
